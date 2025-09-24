@@ -1,0 +1,43 @@
+<?php
+
+use App\Models\Book;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('books', function (Blueprint $table) {
+            $table->id();
+            $table->string('author');
+            $table->longText('title');
+            $table->integer('pieces');
+            $table->timestamps();
+        });
+
+        Book::create([
+            'author' => 'George Orwell',
+            'title' => '1984',
+            'pieces' => 59
+        ]);
+
+        Book::create([
+            'author' => 'Richard Osman',
+            'title' => 'The Thursday Murder Club',
+            'pieces' => 37
+        ]);
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('books');
+    }
+};
