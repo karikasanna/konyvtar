@@ -15,18 +15,23 @@ return new class extends Migration
         Schema::create('copies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('book_id')->constrained('books');
-            $table->foreignId('user_id')->constrained('users');
+            //0 = paperback, 1 = hardcover
+            $table->boolean('hardcover')->default(1);
+            $table->year('publication');
+            //0 = available, 1 = checked out, 2 = faulty
+            $table->smallInteger('status')->default(0);
             $table->timestamps();
         });
 
         Copy::create([
             'book_id' => 1,
-            'user_id' => 2
+            'publication' => 1949
+            
         ]);
 
         Copy::create([
             'book_id' => 2,
-            'user_id' => 1
+            'publication' => 2020
         ]);
     }
 
