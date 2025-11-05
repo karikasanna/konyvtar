@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -27,14 +28,14 @@ return new class extends Migration
         User::create([
             'name' => 'admin',
             'email' => 'admin@test.com',
-            'password' => 'admin123',
+            'password' => Hash::make('admin123'),
             'role' => 0
             ]);
             
         User::create([
             'name' => 'Bukfenc',
             'email' => 'bici@bucc.com',
-            'password' => 'kiskutya123'
+            'password' => Hash::make('kiskutya123')
             ]);
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
